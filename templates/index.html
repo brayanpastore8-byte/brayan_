@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsche Bank | Excellence in Banking</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Initial Entry Modal -->
+    <div class="entry-modal-overlay" id="entryModal">
+        <div class="entry-modal glass-panel">
+            <div class="modal-content" id="entryFormContent">
+                <div class="logo-center">
+                    <div class="db-logo-icon"></div>
+                    <h2>Benvenuto in Deutsche Bank</h2>
+                </div>
+                <p>Per offrirti l'esperienza migliore, ti preghiamo di registrarti.</p>
+                <form id="entryForm" class="bank-form">
+                    <div class="input-group">
+                        <label for="regNome">Nome</label>
+                        <input type="text" id="regNome" required placeholder="Inserisci il tuo nome">
+                    </div>
+                    <div class="input-group">
+                        <label for="regCognome">Cognome</label>
+                        <input type="text" id="regCognome" required placeholder="Inserisci il tuo cognome">
+                    </div>
+                    <div class="input-group">
+                        <label for="regData">Data di Nascita</label>
+                        <input type="date" id="regData" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="regNaz">Nazionalità</label>
+                        <select id="regNaz" required>
+                            <option value="">Seleziona...</option>
+                            <option value="IT">Italiana</option>
+                            <option value="EU">Altra Europea</option>
+                            <option value="EXTRA">Extra-Europea</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">Avanti <i class="ion-arrow-right-c"></i></button>
+                </form>
+            </div>
+            <div class="modal-success hidden" id="entrySuccessContent">
+                <div class="success-animation">
+                    <div class="db-logo-icon large pulse-glow"></div>
+                </div>
+                <h2 class="gradient-text">Registrazione Andata a Buon Fine!</h2>
+                <p>Preparati a scoprire il banking del futuro.</p>
+                <button class="btn-primary btn-large mt-4" id="enterSiteBtn">Accedi al Sito</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Account Opening Modal -->
+    <div class="modal-overlay hidden" id="openAccountModal">
+        <div class="modal-container glass-panel">
+            <button class="close-modal" id="closeAccountModal"><i class="ion-close"></i></button>
+            <div class="modal-header">
+                <h2>Apri un Conto Gratuito</h2>
+                <p>Bastano 5 minuti. Tieni a portata di mano un documento d'identità valido.</p>
+            </div>
+            <form class="bank-form multi-step">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Professione</label>
+                        <select required>
+                            <option value="">Seleziona...</option>
+                            <option>Impiegato</option>
+                            <option>Libero Professionista</option>
+                            <option>Studente</option>
+                            <option>Pensionato</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Reddito Annuo Netto</label>
+                        <select required>
+                            <option value="">Seleziona...</option>
+                            <option>
+                                < 15.000 €</option>
+                            <option>15.000 € - 35.000 €</option>
+                            <option>35.000 € - 75.000 €</option>
+                            <option>> 75.000 €</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>Email Ufficiale</label>
+                        <input type="email" required placeholder="es. mario.rossi@email.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Cellulare</label>
+                        <input type="tel" required placeholder="+39 ...">
+                    </div>
+                </div>
+                <div class="input-group mt-4">
+                    <label>Tipo di Documento</label>
+                    <div class="radio-group">
+                        <label class="radio-card">
+                            <input type="radio" name="docType" checked>
+                            <span>Carta d'Identità</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="docType">
+                            <span>Passaporto</span>
+                        </label>
+                        <label class="radio-card">
+                            <input type="radio" name="docType">
+                            <span>Patente</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="form-actions mt-4">
+                    <button type="button" class="btn-primary btn-full"
+                        onclick="alert('Richiesta in elaborazione. Controlla la tua email.')">Conferma e Invia
+                        Richiesta</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Info/Channel Modal for "Carte di Credito" etc. -->
+    <div class="modal-overlay hidden" id="infoModal">
+        <div class="modal-container glass-panel">
+            <button class="close-modal" id="closeInfoModal"><i class="ion-close"></i></button>
+            <div class="modal-header" id="infoModalHeader">
+                <h2>Titolo Servizio</h2>
+                <p>Dettagli del servizio richiesto.</p>
+            </div>
+            <div class="modal-body" id="infoModalBody">
+                <p>Caricamento informazioni...</p>
+            </div>
+            <div class="mt-4">
+                <h4>Richiedi Informazioni Aggiuntive</h4>
+                <form class="bank-form mt-2">
+                    <div class="input-group">
+                        <label>Domanda / Esigenza</label>
+                        <textarea rows="3" placeholder="Scrivi qui la tua richiesta..."></textarea>
+                    </div>
+                    <button type="button" class="btn-outline btn-full mt-2"
+                        onclick="alert('Messaggio inviato ad un consulente Deutsche Bank.')">Invia Richiesta</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Main Site Content -->
+    <nav class="navbar">
+        <div class="logo">
+            <div class="db-logo-icon"></div>
+            <span>Deutsche Bank</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Servizi e Prodotti</a></li>
+            <li><a href="#about">Chi Siamo</a></li>
+            <li><a href="#support">Supporto</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="btn-outline" onclick="alert('Area Clienti Protetta - Log in')">Accedi</button>
+            <button class="btn-primary" id="openAccountNav">Apri un Conto</button>
+        </div>
+        <div class="menu-toggle">
+            <i class="ion-navicon"></i>
+        </div>
+    </nav>
+
+    <header class="hero" id="home">
+        <div class="hero-bg-anim"></div>
+        <div class="hero-content">
+            <div class="badge">Deutsche Bank Premium 2026</div>
+            <h1>La Banca che <br><span class="gradient-text">Evolve con Te.</span></h1>
+            <p>Sicurezza istituzionale tedesca, design visionario e un ecosistema di investimenti su misura per i tuoi
+                obiettivi di vita.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary btn-large" id="openAccountHero">Apri il tuo Conto</button>
+                <button class="btn-text"
+                    onclick="document.getElementById('services').scrollIntoView({behavior: 'smooth'})">I nostri prodotti
+                    <i class="ion-arrow-right-c"></i></button>
+            </div>
+            <div class="stats">
+                <div class="stat-item">
+                    <h3>€800 Mld+</h3>
+                    <p>Asset in gestione</p>
+                </div>
+                <div class="stat-item">
+                    <h3>150+</h3>
+                    <p>Anni di Storia</p>
+                </div>
+                <div class="stat-item">
+                    <h3>AAA</h3>
+                    <p>Rating Sicurezza</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="glass-card main-card">
+                <div class="card-header">
+                    <div class="card-chip"></div>
+                    <div class="card-wifi"><i class="ion-wifi"></i></div>
+                </div>
+                <div class="card-number">**** **** **** 0018</div>
+                <div class="card-footer">
+                    <div class="card-holder">
+                        <span>Deutsche Bank Black</span>
+                        <h4 id="userCardName">Guest User</h4>
+                    </div>
+                    <div class="card-logo">Mastercard Premium</div>
+                </div>
+            </div>
+            <div class="glow-orb"></div>
+        </div>
+    </header>
+
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2>Esperienza Bancaria Completa</h2>
+            <p>Esplora i nostri canali dedicati. Clicca per scoprire i dettagli e iniziare le tue pratiche online.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card interactive-channel" data-title="Carte di Credito"
+                data-desc="Scopri la gamma di carte Deutsche Bank: dalle opzioni flessibili a zero canone, fino alle esclusive carte Black per benefit VIP in tutto il mondo. Richiedi la tua carta in 2 minuti.">
+                <div class="service-icon"><i class="ion-card"></i></div>
+                <h3>Carte di Credito</h3>
+                <p>Plafond personalizzabili, cashback sugli acquisti e assicurazione inclusa.</p>
+                <span class="view-more">Scopri come fare <i class="ion-arrow-right-c"></i></span>
+            </div>
+            <div class="service-card interactive-channel" data-title="Mutui e Prestiti"
+                data-desc="Realizza i tuoi progetti. Mutui a tasso fisso o variabile con perizia gratuita e prestiti personali erogati in 48 ore.">
+                <div class="service-icon"><i class="ion-home"></i></div>
+                <h3>Mutui e Prestiti</h3>
+                <p>Finanziamenti trasparenti per la casa dei tuoi sogni o i tuoi progetti.</p>
+                <span class="view-more">Scopri come fare <i class="ion-arrow-right-c"></i></span>
+            </div>
+            <div class="service-card interactive-channel" data-title="Investimenti & Trading"
+                data-desc="Accedi ai mercati globali con la piattaforma di trading avanzata o affidati ai nostri gestori patrimoniali per portafogli bilanciati.">
+                <div class="service-icon"><i class="ion-stats-bars"></i></div>
+                <h3>Investimenti Reali</h3>
+                <p>Dalle obbligazioni di stato ai fondi ESG, ottimizza il tuo capitale.</p>
+                <span class="view-more">Scopri come fare <i class="ion-arrow-right-c"></i></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW ABOUT US SECTION -->
+    <section class="about-us glass-section" id="about">
+        <div class="about-grid">
+            <div class="about-text">
+                <div class="badge">Chi Siamo</div>
+                <h2>Solidità Globale, Visione Locale</h2>
+                <p>Da oltre un secolo, <strong>Deutsche Bank</strong> è sinonimo di resilienza, innovazione e
+                    affidabilità. Essere la tua banca significa per noi garantirti una protezione inespugnabile dei tuoi
+                    asset, combinata con la fluidità e l'immediatezza della tecnologia più avanzata.</p>
+                <p>Non siamo solo un luogo dove depositare denaro. Siamo i tuoi partner strategici. Il nostro team di
+                    analisti globali lavora instancabilmente per offrirti prospettive di investimento chiare, mentre i
+                    nostri ingegneri sviluppano interfacce che rendono le operazioni complesse semplici come un tocco
+                    sullo schermo.</p>
+                <ul class="about-list">
+                    <li><i class="ion-checkmark-circled"></i> Presenza in oltre 58 Paesi nel mondo.</li>
+                    <li><i class="ion-checkmark-circled"></i> Criteri ESG rigorosi per investimenti sostenibili.</li>
+                    <li><i class="ion-checkmark-circled"></i> Consulenza Private Wealth dedicata.</li>
+                </ul>
+            </div>
+            <div class="about-visual">
+                <div class="glass-panel about-img-placeholder">
+                    <div class="db-logo-icon large opacity-50"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta" id="support">
+        <div class="cta-container glass-panel">
+            <h2>Il Tuo Consulente è a un Clic</h2>
+            <p>Hai dubbi su come investire? Vuoi capire quale conto è più adatto a te? Siamo qui per aiutarti 24 ore su
+                24.</p>
+            <form class="bank-form inline-form">
+                <input type="text" placeholder="Cerchi qualcosa di specifico? Es: 'Bloccare la carta'">
+                <button type="button" class="btn-primary"
+                    onclick="alert('Ricerca non disponibile in questa demo.')">Cerca</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <div class="db-logo-icon"></div>
+                    <span>Deutsche Bank</span>
+                </div>
+                <p>Una banca fiera del suo passato e pronta per il tuo futuro.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Trasparenza</h4>
+                <ul>
+                    <li><a href="#">Fogli Informativi</a></li>
+                    <li><a href="#">Privacy & Cookie Policy</a></li>
+                    <li><a href="#">Normativa PSD2</a></li>
+                    <li><a href="#">Reclami</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Contatti Rapidi</h4>
+                <ul>
+                    <li><a href="#">Filiali e Bancomat</a></li>
+                    <li><a href="#">Numeri Verdi Emergenza</a></li>
+                    <li><a href="#">FAQ Sicurezza</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Deutsche Bank AG. Tutti i diritti riservati. (Demo non ufficiale)</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
